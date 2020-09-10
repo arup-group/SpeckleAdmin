@@ -1112,6 +1112,8 @@ export default new Vuex.Store( {
         let usedServers = localStorage.getItem( 'allSpeckleServers' ) ? new Set( localStorage.getItem( 'allSpeckleServers' ).split( ',' ) ) : new Set( [ `${payload.server}/api` ] )
         // if( !usedServers ) usedServers = new Set([`${payload.server}/api`])
         usedServers.add( `${payload.server}/api` )
+        let defaultServers = process.env.VUE_APP_DEFAULT_SERVERS.split( ',' ).map( s => s.trim() )
+        defaultServers.forEach( s => usedServers.add( `${s}/api` ) )
         console.log( `${payload.server}/api` )
         console.log( usedServers )
         localStorage.setItem( 'allSpeckleServers', [ ...usedServers ] )

@@ -88,11 +88,14 @@ export default {
         window.open( `${url.origin}/signin?redirectUrl=${ window.encodeURIComponent( location.origin +'/#/signin/callback') }`, 'login screen', 'height=700,width=800' )
       } catch ( err ) {
         this.errorMessage = err.message
-        this.showError = true
+        this.showError = true 
       }
     },
     checkExistingServers( ) {
-      let usedServers = localStorage.getItem( 'allSpeckleServers' ) ? localStorage.getItem( 'allSpeckleServers' ).split( ',' ) : null
+      let defaultServers = process.env.VUE_APP_DEFAULT_SERVERS.split( ',' ).map( s => s.trim() )
+      let usedServers = localStorage.getItem( 'allSpeckleServers' ) ? localStorage.getItem( 'allSpeckleServers' ).split( ',' ) : defaultServers.map( s => s + '/api' )
+      if (usedServers != null)
+        defaultServers.forEach( s => usedServers.indexOf(`${s}/api`) === -1 ? usedServers.push( `${s}/api` ) : null )
       let promises = usedServers.map( s => {
         Axios.get( s )
           .then( res => {
@@ -103,7 +106,7 @@ export default {
           } )
       } )
       let servers = [ ]
-
+      
     },
     checkRedirect( ) {
       //TODO
