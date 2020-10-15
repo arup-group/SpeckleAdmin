@@ -64,7 +64,7 @@ export default {
     this.$store.dispatch( 'authenticate', { server: server, token: jwt } )
       .then( ( ) => {
 
-        this.$store.dispatch( 'getStreams', 'omit=objects,layers&isComputedResult=false&sort=updatedAt' )
+        this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt' )
         this.$store.dispatch( 'getProjects' )
         this.$store.dispatch( 'getProcessors' )
         this.$store.dispatch( 'createClient' )

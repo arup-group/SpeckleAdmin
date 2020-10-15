@@ -21,6 +21,7 @@
     </v-flex>
     <v-flex xs12>
       <v-data-table
+        disable-initial-sort
         :items="streams"
         :headers="headers"
         :search="search"

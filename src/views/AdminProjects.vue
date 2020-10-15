@@ -21,6 +21,7 @@
     </v-flex>
     <v-flex xs12>
       <v-data-table
+        disable-initial-sort
         :items='projects'
         :headers='headers'
         :loading='isGettingProjectData'
@@ -91,7 +92,6 @@ export default {
       }
       return true
     }
-
   },
   data( ) {
     return {
@@ -103,8 +103,8 @@ export default {
         { text: 'Owner', value: 'owner' },
         { text: 'Streams', value: 'streams.length'},
         { text: 'Private', value: 'private' },
-        { text: 'Read Users:', value: 'permissions.canRead.length'},
-        { text: 'Write Users:', value: 'permissions.canWrite.length'},
+        { text: 'Read Users', value: 'permissions.canRead.length'},
+        { text: 'Write Users', value: 'permissions.canWrite.length'},
         { text: "Archived", value: "deleted"},
         { text: '', value: ''}
       ],
@@ -116,7 +116,6 @@ export default {
     ownerName(owner){
       Axios.get( `accounts/${owner}` )
         .then( res => {
-          console.log(res.data.resource)
           return res.data.resource.name + " " + res.data.resource.surname
         } )
         .catch( err => {

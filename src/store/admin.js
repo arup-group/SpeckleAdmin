@@ -87,9 +87,9 @@ const adminStore = {
   getters: {},
   actions: {
     //streams
-    getStreamsAdmin( context ) {
+    getStreamsAdmin( context, query ) {
       return new Promise( ( resolve, reject ) => {
-        Axios.get( 'streams/admin' )
+        Axios.get( `streams/admin?${query ? query : '' }` )
           .then( res => {
             context.commit( 'ADD_STREAMS_ADMIN', res.data.resources )
             return resolve( res.data.resources )

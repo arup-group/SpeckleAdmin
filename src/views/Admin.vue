@@ -9,12 +9,12 @@
           <v-tab key="Users" ripple :to='{name:"admin users"}'>
             Users
           </v-tab>
-          <v-tab key="Streams" ripple :to='{name:"admin streams"}'>
-            Streams
-          </v-tab>
           <v-tab key="Projects" ripple :to='{name:"admin projects"}'>
             Projects
           </v-tab>
+          <v-tab key="Streams" ripple :to='{name:"admin streams"}'>
+            Streams
+          </v-tab>          
         </v-tabs>
         <router-view></router-view>
       </v-flex>
@@ -37,7 +37,7 @@ export default {
   methods: {
   },
   created( ) {
-      this.$store.dispatch( 'getStreamsAdmin' )
+      this.$store.dispatch( 'getStreamsAdmin', 'parent:type=10&deleted=false&fields=name,streamId,owner,private,deleted,description,tags' )
       this.$store.dispatch( 'getProjectsAdmin' )
       this.$store.dispatch( 'getUsersAdmin' )
   }
