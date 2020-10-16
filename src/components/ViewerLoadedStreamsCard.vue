@@ -2,7 +2,12 @@
   <v-card :class='`mb-3 ${ isExpired ? "expired" : "current"}`'>
     <v-card-text>
       <v-layout row wrap>
-        <v-flex xs12>{{stream.name}}</v-flex>
+        <v-flex xs12>
+          <v-btn icon @click.native='$router.push(`/streams/${stream.streamId}`)'>
+            <v-icon>import_export</v-icon>
+          </v-btn>
+          {{stream.name}}
+        </v-flex>
         <v-flex xs12 class='caption'>
           <v-icon small>fingerprint</v-icon> {{stream.streamId}}
           <v-icon small>{{stream.private ? "lock" : "lock_open"}}</v-icon>
