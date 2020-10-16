@@ -16,63 +16,9 @@
     <!-- End toolbar -->
     <v-layout row wrap>
       <v-flex xs12 py-5 class='headline font-weight-light'>
-        Processor allows you to run scripts on streams.
-      </v-flex>
-      <!-- Empty state handler -->
-      <v-flex xs12 v-if='processors.length === 0'>
-        <p class='title font-weight-light'>Hmm, you don't have any processors yet. Don't worry! You can create a new one here (big blue button in the lower right corner)!
-        </p>
-      </v-flex>
-      <v-flex xs12>
-        <v-text-field solo clearable label="Search for a processor" prepend-inner-icon="search" @input="updateSearch" spellcheck="false" v-model='searchfilter' :loading='isSearching' append-icon="refresh" @click:append="$store.dispatch( 'getProcessors' )"></v-text-field>
-        <div v-if='searchfilter && searchfilter!==""'>
-          <p class='title font-weight-light my-3 mx-1'>Found {{filteredProcessors.length}} processor{{filteredProcessors.length===1?'':'s'}} matching your search criteria.</p>
-        </div>
+        A processor is an upcoming feature for executing scripts and workflows automatically when a Speckle stream is updated. If you are interested in beta testing this feature, please email <a href="mailto: david.dekoning@arup.com?subject=Speckle Processor - Beta Testing">David de Koning</a>.
       </v-flex>
     </v-layout>
-    <!-- All the processor cards will flow below -->
-    <v-layout row wrap>
-      <!-- Pagination top (TODO: extract to component) -->
-      <v-flex xs12>
-        <v-btn icon small @click.native='pageNumber=0' :disabled='pageNumber===0'>
-          <v-icon>first_page</v-icon>
-        </v-btn>
-        <v-btn icon small @click.native='pageNumber-=1' :disabled='pageNumber===0'>
-          <v-icon>chevron_left</v-icon>
-        </v-btn>
-        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredProcessors.length/sliceSize)'>
-          <v-icon>chevron_right</v-icon>
-        </v-btn>
-        <v-btn icon small @click.native='pageNumber=Math.round(filteredProcessors.length/sliceSize)' :disabled='pageNumber >= Math.round(filteredProcessors.length/sliceSize)'>
-          <v-icon>last_page</v-icon>
-        </v-btn>
-        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber}} / {{(filteredProcessors.length/sliceSize).toFixed(0)}}</span>
-      </v-flex>
-      <!-- The actual processor cards -->
-      <v-flex xs12 sm6 v-for='processor in paginatedProcessors' :key='processor._id'>
-        <processor-card :resource='processor' v-on:selected='selectThis' v-on:deleted='clearSelection'></processor-card>
-      </v-flex>
-      <!-- Pagination bottom  -->
-      <v-flex xs12>
-        <v-btn icon small @click.native='pageNumber=0' :disabled='pageNumber===0'>
-          <v-icon>first_page</v-icon>
-        </v-btn>
-        <v-btn icon small @click.native='pageNumber-=1' :disabled='pageNumber===0'>
-          <v-icon>chevron_left</v-icon>
-        </v-btn>
-        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredProcessors.length/sliceSize)'>
-          <v-icon>chevron_right</v-icon>
-        </v-btn>
-        <v-btn icon small @click.native='pageNumber=Math.round(filteredProcessors.length/sliceSize)' :disabled='pageNumber >= Math.round(filteredProcessors.length/sliceSize)'>
-          <v-icon>last_page</v-icon>
-        </v-btn>
-        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber}} / {{(filteredProcessors.length/sliceSize).toFixed(0)}}</span>
-      </v-flex>
-    </v-layout>
-    <!-- Big fat fab button to create a new processor -->
-    <v-btn color="primary" dark fixed large bottom right fab @click.native='createProcessor'>
-      <v-icon>add</v-icon>
-    </v-btn>
   </v-container>
 </template>
 <script>
