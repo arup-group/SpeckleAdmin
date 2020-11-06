@@ -1095,7 +1095,6 @@ export default new Vuex.Store( {
     authenticate: ( context, payload ) => new Promise( async ( resolve, reject ) => {
       try {
         let userProfile = await Axios.get( new URL( "/api/accounts", payload.server ), { headers: { 'Authorization': payload.token } } )
-        console.log( userProfile )
         context.commit( 'SET_TOKEN', payload.token )
         context.commit( 'SET_USER', userProfile.data.resource )
         context.commit( 'SET_SERVER', new URL( "/api", payload.server ) )
@@ -1114,8 +1113,6 @@ export default new Vuex.Store( {
         usedServers.add( `${payload.server}/api` )
         let defaultServers = process.env.VUE_APP_DEFAULT_SERVERS.split( ',' ).map( s => s.trim() )
         defaultServers.forEach( s => usedServers.add( `${s}/api` ) )
-        console.log( `${payload.server}/api` )
-        console.log( usedServers )
         localStorage.setItem( 'allSpeckleServers', [ ...usedServers ] )
 
         return resolve( )

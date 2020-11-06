@@ -108,7 +108,7 @@ export default {
       }
     }, 1000 ),
     refreshResources( ) {
-      this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt' )
+      this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt&limit=500' )
       this.$store.dispatch( 'getProjects' )
     }
   }

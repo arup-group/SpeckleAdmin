@@ -1,7 +1,7 @@
 <template>
   <v-layout align-center row wrap @mouseleave='mouseLeave'>
     <v-flex xs12 class='pb-0'>
-      <v-text-field ref="searchField" autofocus box flat clearable prepend-inner-icon="search" label='search for streams' @input="updateSearch" v-model='searchfilter' spellcheck="false" :disabled='globalDisabled' :loading='searchInProgress' append-icon="refresh" @click:append="$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt' )"></v-text-field>
+      <v-text-field ref="searchField" autofocus box flat clearable prepend-inner-icon="search" label='search for streams' @input="updateSearch" v-model='searchfilter' spellcheck="false" :disabled='globalDisabled' :loading='searchInProgress' append-icon="refresh" @click:append="$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt&limit=500' )"></v-text-field>
     </v-flex>
     <v-flex xs12 v-if='showSearchResults' style='margin-top:-30px' class='mb-5'>
       <v-card class='elevation-10'>
@@ -82,7 +82,7 @@ export default {
       this.$refs.searchField.blur()
     },
     refreshStreams( ) {
-      this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt' )
+      this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt&limit=500' )
     },
     selectStream( streamId ) {
       this.$emit( 'selected-stream', streamId )
