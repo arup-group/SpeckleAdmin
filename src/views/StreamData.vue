@@ -187,7 +187,7 @@ export default {
         .then( res => {
           this.layers = res.data.resource.layers
           console.log( this.layers )
-          return Axios.get( `streams/${streamId}/objects?fields=type,value` )
+          return Axios.get( `streams/${streamId}/objects?fields=type,value&limit=500` )
         } )
         .then( res => {
           this.objects = res.data.resources
