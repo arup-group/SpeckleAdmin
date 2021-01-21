@@ -73,13 +73,13 @@
         <v-btn icon small @click.native='pageNumber-=1' :disabled='pageNumber===0'>
           <v-icon>chevron_left</v-icon>
         </v-btn>
-        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize)'>
+        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize) - 1'>
           <v-icon>chevron_right</v-icon>
         </v-btn>
-        <v-btn icon small @click.native='pageNumber=Math.round(filteredStreams.length/sliceSize)' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize)'>
+        <v-btn icon small @click.native='pageNumber=Math.round(filteredStreams.length/sliceSize) - 1' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize) - 1'>
           <v-icon>last_page</v-icon>
         </v-btn>
-        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber}} / {{(filteredStreams.length/sliceSize).toFixed(0)}}</span>
+        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber + 1}} / {{(filteredStreams.length/sliceSize).toFixed(0)}}</span>
       </v-flex>
       <!-- The actual stream cards -->
       <v-flex xs12 sm6 v-for='stream in paginatedStreams' :key='stream._id'>
@@ -93,13 +93,13 @@
         <v-btn icon small @click.native='pageNumber-=1' :disabled='pageNumber===0'>
           <v-icon>chevron_left</v-icon>
         </v-btn>
-        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize)'>
+        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize) - 1'>
           <v-icon>chevron_right</v-icon>
         </v-btn>
-        <v-btn icon small @click.native='pageNumber=Math.round(filteredStreams.length/sliceSize)' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize)'>
+        <v-btn icon small @click.native='pageNumber=Math.round(filteredStreams.length/sliceSize) - 1' :disabled='pageNumber >= Math.round(filteredStreams.length/sliceSize) - 1'>
           <v-icon>last_page</v-icon>
         </v-btn>
-        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber}} / {{(filteredStreams.length/sliceSize).toFixed(0)}}</span>
+        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber + 1}} / {{(filteredStreams.length/sliceSize).toFixed(0)}}</span>
       </v-flex>
     </v-layout>
     <!-- Big fat fab button to create a new stream -->
