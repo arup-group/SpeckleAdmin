@@ -65,13 +65,13 @@
         <v-btn icon small @click.native='pageNumber-=1' :disabled='pageNumber===0'>
           <v-icon>chevron_left</v-icon>
         </v-btn>
-        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize)'>
+        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize) - 1'>
           <v-icon>chevron_right</v-icon>
         </v-btn>
-        <v-btn icon small @click.native='pageNumber=Math.round(filteredProjects.length/sliceSize)' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize)'>
+        <v-btn icon small @click.native='pageNumber=Math.round(filteredProjects.length/sliceSize) - 1' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize) - 1'>
           <v-icon>last_page</v-icon>
         </v-btn>
-        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber}} / {{(filteredProjects.length/sliceSize).toFixed(0)}}</span>
+        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber + 1}} / {{(filteredProjects.length/sliceSize).toFixed(0)}}</span>
       </v-flex>
       <!-- The actual project cards -->
       <v-flex xs12 sm6 v-for='project in paginatedProjects' :key='project._id'>
@@ -85,13 +85,13 @@
         <v-btn icon small @click.native='pageNumber-=1' :disabled='pageNumber===0'>
           <v-icon>chevron_left</v-icon>
         </v-btn>
-        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize)'>
+        <v-btn icon @click.native='pageNumber+=1' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize) - 1'>
           <v-icon>chevron_right</v-icon>
         </v-btn>
-        <v-btn icon small @click.native='pageNumber=Math.round(filteredProjects.length/sliceSize)' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize)'>
+        <v-btn icon small @click.native='pageNumber=Math.round(filteredProjects.length/sliceSize) - 1' :disabled='pageNumber >= Math.round(filteredProjects.length/sliceSize) - 1'>
           <v-icon>last_page</v-icon>
         </v-btn>
-        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber}} / {{(filteredProjects.length/sliceSize).toFixed(0)}}</span>
+        <span class='caption' xxxstyle="position: relative;top:8px;">{{pageNumber + 1}} / {{(filteredProjects.length/sliceSize).toFixed(0)}}</span>
       </v-flex>
     </v-layout>
     <!-- Big fat fab button to create a new project -->
@@ -179,8 +179,11 @@ export default {
     createProject( ) {
       this.$store.dispatch( 'createProject', { name: 'A brand new speckle project' } )
         .then( res => {
-          this.$router.push( `/projects/${res._id}` )
+          this.$router.push( `/projects/${res._id}` )          
         } )
+        .catch( err => {
+          console.error( err )
+        } )        
     },
     deleteSelectedProjects( ) {
       this.selectedProjects.forEach( project => {
