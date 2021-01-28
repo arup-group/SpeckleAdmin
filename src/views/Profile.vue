@@ -12,7 +12,7 @@
       <v-flex xs12 my>
         <v-layout row wrap align-top>
           <v-flex xs12>
-            <v-btn small class='ma-0' @click.native='showToken = !showToken'>{{showToken ? "Hide" : "Show"}} API Token</v-btn depressed><br>&nbsp;
+            <v-btn small class='ma-0' @click.native='showToken = !showToken'>{{showToken ? "Hide" : "Show"}} API Token / Connection String</v-btn depressed><br>&nbsp;
           </v-flex>
           <v-flex xs12 v-if='showToken'>
             <v-alert :value="true" type="warning">
