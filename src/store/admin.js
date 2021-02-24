@@ -26,7 +26,7 @@ const adminStore = {
     },
     UPDATE_STREAM( state, props ) {
       let found = state.streams.find( s => s.streamId === props.streamId )
-      if ( !found ) return console.error( 'User not found; aborting update.' )
+      if ( !found ) return console.error( 'Stream not found; aborting update.' )
       Object.keys( props ).forEach( key => {
         found[ key ] = props[ key ]
       } )
