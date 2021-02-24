@@ -104,18 +104,6 @@ let myRouter = new Router( {
       } ]
     },
     {
-      path: '/processors',
-      name: 'processors',
-      component: ( ) => import( './views/Processors.vue' ),
-      meta: { requiresAuth: true },
-    },
-    {
-      path: '/processors/:processorId',
-      name: 'processor overview',
-      component: ( ) => import( './views/Processor.vue' ),
-      meta: { requiresAuth: true },
-    },
-    {
       path: '/pluginsadmin',
       name: 'plugins',
       component: ( ) => import( './views/Plugins.vue'),

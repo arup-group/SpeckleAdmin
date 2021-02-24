@@ -73,7 +73,6 @@ export default {
     if ( this.$store.state.isAuth ) {
       this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt&limit=500' )
       this.$store.dispatch( 'getProjects' )
-      this.$store.dispatch( 'getProcessors' )
       this.$store.dispatch( 'createClient' )
     }
     if ( localStorage.getItem( 'dark' ) === 'true' ) {
@@ -81,7 +80,6 @@ export default {
       this.$store.commit( 'SET_DARK', true )
     }
 
-    this.$store.dispatch( 'loadLambdas' )
   },
   updated( ) {
     // let overlay = document.getElementsByClassName( "md-overlay" )[ 0 ]

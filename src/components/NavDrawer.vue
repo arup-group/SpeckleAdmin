@@ -106,15 +106,6 @@
           <v-list-tile-sub-title class='xxx-font-weight-light caption'>3d speckle stream viewer</v-list-tile-sub-title>
         </v-list-tile-content>
       </v-list-tile>
-      <v-list-tile to='/processors'>
-        <v-list-tile-action>
-          <v-icon>code</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Processor</v-list-tile-title>
-          <v-list-tile-sub-title class='xxx-font-weight-light caption'>Stream processing</v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
       <!-- Dynamically add plugin routes -->
       <v-list-tile v-for='plugin in $store.state.adminPlugins' :to='plugin.route' :key='plugin.route'>
         <v-list-tile-action>
