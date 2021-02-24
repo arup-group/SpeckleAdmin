@@ -71,6 +71,7 @@ export default {
       if ( canWrite ) {
         localCanWrite = this.project.canWrite.filter( uId => uId !== userId )
         localCanRead = uniq( [ ...this.project.canRead, userId ] )
+        this.downgradeUser( userId )
       } else {
         localCanRead = this.project.canRead
         localCanWrite = uniq( [ ...this.project.canWrite, userId ] )
