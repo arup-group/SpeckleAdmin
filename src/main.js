@@ -177,16 +177,10 @@ let initApp = ( ) => {
     render: h => h( App ),
     created( ) {
       try {
-        if ( Store.state.serverManifest != null )
-          if ( Store.state.serverManifest.telemetry === 'true' ) {
-            Vue.use( VueCountly, Countly, {
-              app_key: '04ac5c1e31e993f2624e964475dd949e9a3443f5',
-              url: 'https://telemetry.speckle.works',
-            } );
+        if ( Store.state.serverManifest != null ) {
+          // put init code here
+        }
 
-            this.$Countly.q.push( [ 'track_sessions' ] )
-            Router.$Countly = this.$Countly
-          }
       } catch ( error ) {
         // eslint-disable-next-line no-console
         console.error( error )

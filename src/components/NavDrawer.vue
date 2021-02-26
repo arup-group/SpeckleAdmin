@@ -175,7 +175,7 @@
       <v-card-text>
         <div class='text-uppercase text-xs-center-xxx caption ml-0 pa-5 ml-2 mt-3 mb-3'>
           Brought to you by:<br>
-          <a href='https://speckle.works' target="_blank" style="xxxcolor:white; text-decoration: none;"><b>Speckle</b>,
+          <a href='https://speckle.arup.com/' target="_blank" style="xxxcolor:white; text-decoration: none;"><b>Speckle Community Extensions</b>,
             <span class=' caption'>the open source data platform for AEC.</span></a>
           <!-- <v-divider class='my-4'></v-divider> -->
         </div>
