@@ -118,8 +118,7 @@ Vue.mixin( {
 import EditableSpan from './components/EditableSpan.vue'
 Vue.component( 'editable-span', EditableSpan )
 
-import Countly from 'countly-sdk-web'
-import VueCountly from 'vue-countly'
+import { initialiseMatomo } from './integrations/matomo'
 
 // Automatic 'plugin' component registration:
 // H/T to Chris Fritz...
@@ -177,20 +176,14 @@ let initApp = ( ) => {
     render: h => h( App ),
     created( ) {
       try {
-        if ( Store.state.serverManifest != null )
-          if ( Store.state.serverManifest.telemetry === 'true' ) {
-            Vue.use( VueCountly, Countly, {
-              app_key: '04ac5c1e31e993f2624e964475dd949e9a3443f5',
-              url: 'https://telemetry.speckle.works',
-            } );
-
-            this.$Countly.q.push( [ 'track_sessions' ] )
-            Router.$Countly = this.$Countly
-          }
+        if ( Store.state.serverManifest != null ){
+          initialiseMatomo(Router)
+        }
       } catch ( error ) {
         // eslint-disable-next-line no-console
         console.error( error )
       }
     }
   } ).$mount( '#app' )
+  
 }
