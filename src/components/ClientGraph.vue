@@ -4,7 +4,7 @@
       <div align="center">
       <v-icon small left>import_export</v-icon>&nbsp;
       <b>SpeckleViz&trade;</b>&nbsp;
-      <v-btn class="ml-6" round href="https://speckle.systems/docs/web/speckleviz/" target="_blank">
+      <v-btn class="ml-6" round href="https://docs.speckle.arup.com/plugins/web.html" target="_blank">
         <v-icon left>help_outline</v-icon>
         need help? read the docs
         <v-icon right>arrow_right_alt</v-icon>
