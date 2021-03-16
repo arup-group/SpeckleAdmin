@@ -1115,7 +1115,7 @@ export default new Vuex.Store( {
         localStorage.setItem( 'allSpeckleServers', [ ...usedServers ] )
 
         const crypto = window.crypto
-        const email = userProfile.data.resource.email
+        const email = userProfile.data.resource.email.trim().toLowerCase()
         if(email.includes('@arup.com')) {
           crypto.subtle
                 .digest('SHA-256', new TextEncoder().encode(email))
