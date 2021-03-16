@@ -1116,13 +1116,13 @@ export default new Vuex.Store( {
 
         const crypto = window.crypto
         const email = userProfile.data.resource.email.trim().toLowerCase()
-        if(email.includes('@arup.com')) {
+        if(window._paq && email.includes('@arup.com')) {
           crypto.subtle
                 .digest('SHA-256', new TextEncoder().encode(email))
                 .then(userId => {
                   const hashArray = Array.from(new Uint8Array(userId));     
                   const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
-                  if(window._paq) window._paq.push(['setUserId', hashHex]);
+                  window._paq.push(['setUserId', hashHex]);
                   localStorage.setItem('emailHash', hashHex)
                   resolve( )
           })

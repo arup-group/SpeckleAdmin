@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueMatomo from 'vue-matomo'
 
 export function initialiseMatomo (router) {
-  if(window.location.origin.includes('localhost')) return
+  if(!process.env.VUE_APP_MATOMO_URL) return
   const emailHash = window.localStorage.getItem('emailHash')
   const config = matomoConfig(router)
   if (emailHash) Object.assign(config, {userId: emailHash})
@@ -11,8 +11,8 @@ export function initialiseMatomo (router) {
 
 function matomoConfig (router) {
   return {
-    // Configure your matomo server and site by providing
-    host: process.env.VUE_APP_MATOMO_URL,
+    // Configure host and site using build configuration
+    host: process.env.VUE_APP_MATOMO_URL.replace('/matomo.php', ''),
     siteId: process.env.VUE_APP_MATOMO_SITE,
 
     // Enables automatically registering pageviews on the router
