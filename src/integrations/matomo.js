@@ -12,8 +12,8 @@ export function initialiseMatomo (router) {
 function matomoConfig (router) {
   return {
     // Configure your matomo server and site by providing
-    host: 'https://arupdt.matomo.cloud',
-    siteId: 1,
+    host: process.env.VUE_APP_MATOMO_URL,
+    siteId: process.env.VUE_APP_MATOMO_SITE,
 
     // Enables automatically registering pageviews on the router
     router: router,
