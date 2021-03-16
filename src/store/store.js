@@ -1114,7 +1114,21 @@ export default new Vuex.Store( {
         defaultServers.forEach( s => usedServers.add( `${s}/api` ) )
         localStorage.setItem( 'allSpeckleServers', [ ...usedServers ] )
 
-        return resolve( )
+        const crypto = window.crypto
+        const email = userProfile.data.resource.email
+        if(email.includes('@arup.com')) {
+          crypto.subtle
+                .digest('SHA-256', new TextEncoder().encode(email))
+                .then(userId => {
+                  const hashArray = Array.from(new Uint8Array(userId));     
+                  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
+                  if(window._paq) window._paq.push(['setUserId', hashHex]);
+                  localStorage.setItem('emailHash', hashHex)
+                  resolve( )
+          })
+        } else {
+          resolve( )
+        }
       } catch ( err ) {
         console.log( err )
         return reject( err.message )

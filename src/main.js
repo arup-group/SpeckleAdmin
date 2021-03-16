@@ -176,9 +176,7 @@ let initApp = ( ) => {
     render: h => h( App ),
     created( ) {
       try {
-        if ( Store.state.serverManifest != null ){
-          initialiseMatomo(Router)
-        }
+        initialiseMatomo(Router)
       } catch ( error ) {
         // eslint-disable-next-line no-console
         console.error( error )
