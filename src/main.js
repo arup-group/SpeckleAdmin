@@ -118,8 +118,7 @@ Vue.mixin( {
 import EditableSpan from './components/EditableSpan.vue'
 Vue.component( 'editable-span', EditableSpan )
 
-import Countly from 'countly-sdk-web'
-import VueCountly from 'vue-countly'
+import { initialiseMatomo } from './integrations/matomo'
 
 // Automatic 'plugin' component registration:
 // H/T to Chris Fritz...
@@ -177,14 +176,12 @@ let initApp = ( ) => {
     render: h => h( App ),
     created( ) {
       try {
-        if ( Store.state.serverManifest != null ) {
-          // put init code here
-        }
-
+        initialiseMatomo(Router)
       } catch ( error ) {
         // eslint-disable-next-line no-console
         console.error( error )
       }
     }
   } ).$mount( '#app' )
+  
 }
