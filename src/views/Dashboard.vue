@@ -7,22 +7,21 @@
       </v-flex>
       <v-flex xs12 py-5 class='' v-if='streams.length === 0 && projects.length === 0'>
         <div class='headline font-weight-light mb-4'>
-          👋 Hello {{$store.state.user.name}}! It looks like it's your first time here. Don't forget to check out the <a href='https://speckle.systems/docs/essentials/start' target='_blank'>guide</a>!
+          👋 Hello {{$store.state.user.name}}! It looks like it's your first time here. Don't forget to check out the <a href='https://docs.speckle.arup.com' target='_blank'>Speckle website</a>!
         </div>
         <v-divider></v-divider>
         <div class='mt-4 subheading'>
-          You can also get in touch with the rest of the speckle community via:
+          You can also get in touch with the Speckle@Arup community via:
           <ul>
-            <li><a href='https://discourse.speckle.works' target="_blank">Discourse</a></li>
-            <li><a href='https://slacker.speckle.works' target="_blank">Slack</a></li>
-            <li><a href='https://twitter.com/SpeckleSystems' target="_blank">Twitter</a></li>
+            <li><a href='https://teams.microsoft.com/l/team/19%3a4d7846f52ebb4759b0fd3c53d9e09c45%40thread.skype/conversations?groupId=672fa522-1971-4209-8c5f-22c927093b8a&tenantId=4ae48b41-0137-4599-8661-fc641fe77bea'
+             target="_blank">Teams</a></li>
           </ul>
         </div>
       </v-flex>
       <v-flex xs12 v-if='streams.length !== 0 || projects.length !== 0'>
         <search-everything />
       </v-flex>
-      <v-flex xs12 md6 lg4 v-if='streams.length !== 0 || projects.length !== 0'>
+      <v-flex xs12 md6 lg6 v-if='streams.length !== 0 || projects.length !== 0'>
         <v-card class="elevation-1">
           <v-card-title>
             <v-icon left>
@@ -55,7 +54,7 @@
           </v-card-actions>
         </v-card>
       </v-flex>
-      <v-flex xs12 md6 lg4 v-if='streams.length !== 0 || projects.length !== 0'>
+      <v-flex xs12 md6 lg6 v-if='streams.length !== 0 || projects.length !== 0'>
         <v-card class="elevation-1">
           <v-card-title>
             <v-icon left>
@@ -87,34 +86,16 @@
           </v-card-actions>
         </v-card>
       </v-flex>
-      <v-flex xs12 md6 lg4>
-        <v-toolbar dense class=' '>
-          <v-icon left>
-            fiber_new
-          </v-icon>
-          <span class='title font-weight-light'>
-            Speckle News
-          </span>
-          <v-spacer></v-spacer>
-          <!-- <v-toolbar-items>
-            <v-btn flat href='https://twitter.com/SpeckleSystems' target='_blank'>Follow Speckle!</v-btn>
-          </v-toolbar-items> -->
-        </v-toolbar>
-        <v-card style='max-height: 560px; overflow-y: auto;'>
-          <Timeline :id="'specklesystems'" :sourceType="'profile'" :options="{ theme: $store.state.dark ? 'dark' : '', tweetLimit: 10 }" />
-        </v-card>
-        <v-btn block large xxxcolor='black' href='https://twitter.com/SpeckleSystems' target='_blank'>Follow Speckle For More!</v-btn>
-      </v-flex>
+
     </v-layout>
   </v-container>
 </template>
 <script>
-import { Timeline } from 'vue-tweet-embed'
 import SearchEverything from '@/components/SearchEverything.vue'
 
 export default {
   name: 'HomeView',
-  components: { SearchEverything, Timeline },
+  components: { SearchEverything },
   computed: {
     latestStreams( ) {
       return this.streams.slice( 0, 7 )
