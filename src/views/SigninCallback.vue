@@ -12,7 +12,7 @@
           <v-card-text v-else class='pt-4'>
             <p class='headline font-weight-light'><v-icon class='pb-1'>error</v-icon>&nbsp;Oups. Something bad happened :(</p>
             <p class='caption' v-if='sslProblem'>
-              Your server is not using SSL (i.e, your server url is http and not http<b>s</b>. Please check the community supported <a href='https://discourse.speckle.works/t/speckle-server-debian-9-installation-notes-for-development-machines/344' target="_blank"> server deployment instructions</a>. If still in trouble, don't hesitate to get in touch on <a href="https://speckle-works.slack.com/join/shared_invite/enQtNjY5Mzk2NTYxNTA4LTU4MWI5ZjdhMjFmMTIxZDIzOTAzMzRmMTZhY2QxMmM1ZjVmNzJmZGMzMDVlZmJjYWQxYWU0MWJkYmY3N2JjNGI">slack</a> or <a href="https://discourse.speckle.works/">discourse</a>.</p>
+              Your server is not using SSL (i.e, your server url is http and not http<b>s</b>.</p>
             <v-btn block to='/signin'>back to signin</v-btn>
           </v-card-text>
           <v-card-actions>
