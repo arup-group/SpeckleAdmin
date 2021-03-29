@@ -123,8 +123,10 @@ myRouter.afterEach( ( to, from ) => {
   if ( Store.state.server )
     existingQueryObject.server = Store.state.server
 
-  if ( myRouter.$Countly ) {
-    myRouter.$Countly.q.push( [ 'track_pageview', to.name ] )
+  if(window._paq) {
+    window._paq.push(['setCustomUrl', window.location.origin + to.path]);
+    window._paq.push(['setDocumentTitle', to.name]);
+    window._paq.push(['trackPageView']);
   }
 
   myRouter.replace( { params: to.params, query: { s: base64url( JSON.stringify( existingQueryObject ) ) } } )

@@ -16,7 +16,7 @@ function matomoConfig (router) {
     siteId: process.env.VUE_APP_MATOMO_SITE,
 
     // Enables automatically registering pageviews on the router
-    router: router,
+    router: undefined,
 
     // Enables link tracking on regular links. Note that this won't
     // work for routing links (ie. internal Vue router links)
