@@ -580,6 +580,22 @@ export default new Vuex.Store( {
           } )
       } )
     },
+
+
+    getStreamsLean( context, query ) {
+      return new Promise( ( resolve, reject ) => {
+        Axios.get( `streams/lean` )
+          .then( res => {
+            context.commit( 'ADD_STREAMS', res.data.resources )
+            return resolve( res.data.resources )
+          } )
+          .catch( err => {
+            console.log( err )
+            return reject( err )
+          } )
+      } )
+    }, 
+
     createStream( context, stream ) {
       let streamId = null
       return new Promise( ( resolve, reject ) => {
@@ -1089,6 +1105,16 @@ export default new Vuex.Store( {
         } )
         .catch( err => reject( err ) )
     } ),
+
+    refreshToken: ( context, payload ) => new Promise( ( resolve, reject ) => {    
+      console.log( payload )
+      Axios.post( `accounts/refresh`, payload )
+      .then( res => {
+        context.commit( 'UPDATE_USER', res.data.resource )
+        return resolve( res )
+      } )
+      .catch( err => reject( err ) )    
+    } ),    
 
     // Auth
     authenticate: ( context, payload ) => new Promise( async ( resolve, reject ) => {
