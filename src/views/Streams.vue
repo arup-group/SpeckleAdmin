@@ -27,7 +27,7 @@
         </p>
       </v-flex>
       <v-flex xs12>
-        <v-text-field solo clearable :xxxhint='searchHint' label="Search for a stream" prepend-inner-icon="search" @input="updateSearch" spellcheck="false" v-model='searchfilter' :loading='isSearching' append-icon="refresh" @click:append="$store.dispatch( 'getStreamsLean' )"></v-text-field>
+        <v-text-field solo clearable :xxxhint='searchHint' label="Search for a stream" prepend-inner-icon="search" @input="updateSearch" spellcheck="false" v-model='searchfilter' :loading='isSearching' append-icon="refresh" @click:append="$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt&limit=500' )"></v-text-field>
         <!--       <p class='caption'>
           How to search for things?
         </p> -->

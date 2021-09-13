@@ -1107,7 +1107,6 @@ export default new Vuex.Store( {
     } ),
 
     refreshToken: ( context, payload ) => new Promise( ( resolve, reject ) => {    
-      console.log( payload )
       Axios.post( `accounts/refresh`, payload )
       .then( res => {
         context.commit( 'UPDATE_USER', res.data.resource )
