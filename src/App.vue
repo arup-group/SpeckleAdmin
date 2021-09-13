@@ -71,7 +71,7 @@ export default {
   },
   created( ) {
     if ( this.$store.state.isAuth ) {
-      this.$store.dispatch( 'getStreams', 'parent:type=10&omit=objects,layers,viewerLayers&isComputedResult=false&sort=updatedAt&limit=500' )
+      this.$store.dispatch( 'getStreamsLean' )
       this.$store.dispatch( 'getProjects' )
       this.$store.dispatch( 'createClient' )
     }

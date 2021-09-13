@@ -12,54 +12,94 @@
       <v-flex xs12 my>
         <v-layout row wrap align-top>
           <v-flex xs12>
-            <v-btn small class='ma-0' @click.native='showToken = !showToken'>{{showToken ? "Hide" : "Show"}} API Token / Connection String</v-btn depressed><br>&nbsp;
+            <v-btn small class='ma-0' @click.native='toggleShowToken'>{{showToken ? "Hide" : "Show"}} API Token / Connection String</v-btn depressed><br>
           </v-flex>
-          <v-flex xs12 v-if='showToken'>
+          <v-flex xs12 v-if='showToken'>           
             <v-alert :value="true" type="warning">
               Take care, this token is unique to you. Do not share it with others as it grants full access on your behalf to the api.
             </v-alert>
-<!--           </v-flex>
-          <v-flex xs12> -->
-            <code  class='pa-3' style="user-select:all; max-width:100%; overflow-wrap: break-word;">{{user.apitoken}}</code>
-          </v-flex>
+            <code class='pa-3' style="user-select:all; max-width:100%; overflow-wrap: break-word;">{{user.apitoken}}</code>          
+          </v-flex>  
+          <v-flex>                  
+            <v-layout row wrap align-top>
+              <v-flex xs12>
+                <v-btn small class='ma-0' @click.native='refreshToken'>Refresh API Token</v-btn depressed><br>
+              </v-flex>
+            </v-layout> 
+            <v-alert :value="isTokenExpired" type="error">
+              Your API Token has expired. Please generate a refreshed token to regain access to the API.
+            </v-alert>     
+            <v-alert :value="showTokenRefreshSuccess" type="success">
+              API Token successfully refreshed.
+            </v-alert>             
+          </v-flex>                   
         </v-layout>
-      </v-flex>
+      </v-flex>     
     </v-layout>
   </v-container>
 </template>
 <script>
+import jwt from "jsonwebtoken";
+
 export default {
-  name: 'ProfileView',
+  name: "ProfileView",
   computed: {
-    user( ) {
-      return this.$store.state.user
-    }
+    user() {
+      return this.$store.state.user;
+    },
   },
-  data( ) {
+  mounted: function () {
+    this.checkTokenExpiry();
+  },
+  data() {
     return {
-      showToken: false
-    }
+      showToken: false,
+      isTokenExpired: false,
+      showTokenRefreshSuccess: false
+    };
   },
   methods: {
-    updateName( args ) {
-      this.$store.dispatch( 'updateLoggedInUser', { _id: this.user._id, name: args.text } )
+    updateName(args) {
+      this.$store.dispatch("updateLoggedInUser", {
+        _id: this.user._id,
+        name: args.text,
+      });
     },
-    updateSurname( args ) {
-      this.$store.dispatch( 'updateLoggedInUser', { _id: this.user._id, surname: args.text } )
+    updateSurname(args) {
+      this.$store.dispatch("updateLoggedInUser", {
+        _id: this.user._id,
+        surname: args.text,
+      });
     },
-    updateCompany( args ) {
-      this.$store.dispatch( 'updateLoggedInUser', { _id: this.user._id, company: args.text } )
+    updateCompany(args) {
+      this.$store.dispatch("updateLoggedInUser", {
+        _id: this.user._id,
+        company: args.text,
+      });
     },
-    logout( ) {
-      this.$store.dispatch( 'logout' )
-      this.$router.push( '/login' )
-    }
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/login");
+    },
+    toggleShowToken() {
+      this.showToken = !this.showToken;
+      this.showTokenRefreshSuccess = false;
+      this.checkTokenExpiry();
+    },    
+    refreshToken() {
+      this.$store.dispatch("refreshToken", { _id: this.user._id });
+      this.showTokenRefreshSuccess = true;
+      this.isTokenExpired = false;
+    },
+    checkTokenExpiry() {
+      let token = this.$store.state.user.apitoken;
+      token = token.replace("JWT ", "");
+      const expiry = jwt.decode(token, { complete: true }).payload.exp;
+      const now = new Date();
+      this.isTokenExpired = now.getTime() >= expiry * 1000;
+    },
   },
-  mounted( ) {
-
-  }
-}
-
+};
 </script>
 <style scoped lang='scss'>
 </style>
