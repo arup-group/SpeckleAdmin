@@ -15,6 +15,7 @@
     </v-toolbar>
     <!-- End toolbar -->
     <v-layout row wrap>
+      <alert-message />
       <v-flex xs12 py-5 class='headline font-weight-light'>
         Projects allow you to share streams with a team.
       </v-flex>
@@ -103,11 +104,13 @@
 <script>
 import debounce from 'lodash.debounce'
 import ProjectCard from '../components/ProjectCard.vue'
+import AlertMessage from '../components/AlertMessage.vue'
 
 export default {
   name: 'ProjectsView',
   components: {
-    ProjectCard
+    ProjectCard, 
+    AlertMessage
   },
   computed: {
     projects( ) {

@@ -15,6 +15,7 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-layout row wrap>
+      <alert-message />
       <v-flex xs12 py-5 class='headline font-weight-light'>
         Welcome to the recycle bin ({{allResources.length}} items). You can restore them or delete them permanently.<br><strong>Take care, there's no undo button!</strong>
       </v-flex>
@@ -68,11 +69,13 @@
 </template>
 <script>
 import SimpleCard from '../components/SimpleCard.vue'
+import AlertMessage from '../components/AlertMessage.vue'
 
 export default {
   name: 'TrashView',
   components: {
-    SimpleCard
+    SimpleCard,
+    AlertMessage
   },
   watch: {
     filterText( ) {

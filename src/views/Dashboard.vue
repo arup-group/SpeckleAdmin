@@ -1,6 +1,7 @@
 <template>
   <v-container grid-list-xl>
     <v-layout row wrap>
+      <alert-message />
       <v-flex xs12 py-5 class='headline font-weight-light' v-if='streams.length !== 0 || projects.length !== 0'>
         👋 Hi {{$store.state.user.name}}! You have <router-link to='/streams'><strong>{{streams.length}}</strong> streams</router-link> and <router-link to='/projects'>
           <strong>{{projects.length}}</strong> projects</router-link> in total.
@@ -92,10 +93,11 @@
 </template>
 <script>
 import SearchEverything from '@/components/SearchEverything.vue'
+import AlertMessage from '@/components/AlertMessage.vue'
 
 export default {
   name: 'HomeView',
-  components: { SearchEverything },
+  components: { SearchEverything, AlertMessage },
   computed: {
     latestStreams( ) {
       return this.streams.slice( 0, 7 )
