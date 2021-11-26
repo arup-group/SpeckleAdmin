@@ -17,6 +17,7 @@
     </v-toolbar>
     <!-- End toolbar -->
     <v-layout row wrap>
+      <alert-message />
       <v-flex xs12 py-5 class='headline font-weight-light'>
         Streams are the channels your design data flows into.
       </v-flex>
@@ -111,10 +112,11 @@
 <script>
 import debounce from 'lodash.debounce'
 import StreamCard from '../components/StreamCard.vue'
+import AlertMessage from '../components/AlertMessage.vue'
 
 export default {
   name: 'StreamsView',
-  components: { StreamCard },
+  components: { StreamCard, AlertMessage },
   computed: {
     allTags( ) {
       return this.$store.getters.allStreamTags
