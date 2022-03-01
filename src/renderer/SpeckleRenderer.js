@@ -666,7 +666,7 @@ export default class SpeckleRenderer extends EE {
         colors[ k++ ] = myColour.g
         colors[ k++ ] = myColour.b
       }
-      obj.geometry.addAttribute( 'color', new THREE.BufferAttribute( colors, 3, true ) )
+      obj.geometry.setAttribute( 'color', new THREE.BufferAttribute( colors, 3, true ) )
       obj.geometry.attributes.color.needsUpdate = true
       obj.geometry.colorsNeedUpdate = true
       obj.material.vertexColors = THREE.VertexColors

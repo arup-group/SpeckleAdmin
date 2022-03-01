@@ -25,10 +25,6 @@
   </v-card>
 </template>
 <script>
-import debounce from 'lodash.debounce'
-import uniq from 'lodash.uniq'
-import union from 'lodash.union'
-import marked from 'marked'
 
 export default {
   name: 'ProjectCard',

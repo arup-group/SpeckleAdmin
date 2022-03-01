@@ -37,7 +37,8 @@
 </template>
 <script>
 import debounce from 'lodash.debounce'
-import marked from 'marked'
+import { marked } from 'marked'
+import DOMPurify from 'dompurify';
 
 export default {
   name: 'DetailDescription',
@@ -51,7 +52,7 @@ export default {
       else return "Project"
     },
     compiledDescription( ) {
-      return marked( this.resource.description, { sanitize: true } )
+      return DOMPurify.sanitize(marked( this.resource.description ))
     },
     canEdit( ) {
       if (this.$store.state.user.role == 'admin') return true
