@@ -36,7 +36,8 @@
 import debounce from 'lodash.debounce'
 import uniq from 'lodash.uniq'
 import union from 'lodash.union'
-import marked from 'marked'
+import { marked } from 'marked'
+import DOMPurify from 'dompurify';
 
 export default {
   name: 'ProjectCard',
@@ -58,7 +59,7 @@ export default {
       return date.toLocaleString( 'en', { year: 'numeric', month: 'long', day: 'numeric' } )
     },
     compiledDescription( ) {
-      return marked( this.project.description.substring( 0, 400 ) + ' ...', { sanitize: true } )
+      return DOMPurify.sanitize(marked( this.project.description.substring( 0, 400 ) + ' ...'))
     },
     canEdit( ) {
       return this.isOwner ? true : this.project.canWrite.indexOf( this.$store.state.user._id ) !== -1

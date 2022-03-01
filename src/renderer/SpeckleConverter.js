@@ -117,7 +117,7 @@ let Converter = {
   },
 
   Point( args, cb ) {
-    let geometry = new THREE.Geometry( )
+    let geometry = new THREE.BufferGeometry( )
     geometry.vertices.push( new THREE.Vector3( ...args.obj.value ) )
 
     geometry.vertices.forEach( ( v, i ) => { geometry.colors.push( this.defaultColor ) } )
@@ -132,7 +132,7 @@ let Converter = {
     if ( args.obj.properties ) {
       if ( args.obj.properties.origin ) {
         origin = new THREE.Vector3( ...args.obj.origin )
-        let geometry = new THREE.Geometry( )
+        let geometry = new THREE.BufferGeometry( )
         geometry.vertices.push( v )
         geometry.vertices.push( origin )
         geometry.vertices.forEach( ( v, i ) => { geometry.colors.push( this.defaultColor ) } )
@@ -164,7 +164,7 @@ let Converter = {
   },
 
   Line( args, cb ) {
-    let geometry = new THREE.Geometry( )
+    let geometry = new THREE.BufferGeometry( )
     geometry.vertices.push( new THREE.Vector3( args.obj.value[ 0 ], args.obj.value[ 1 ], args.obj.value[ 2 ] ) )
     geometry.vertices.push( new THREE.Vector3( args.obj.value[ 3 ], args.obj.value[ 4 ], args.obj.value[ 5 ] ) )
 
@@ -189,7 +189,7 @@ let Converter = {
     q.setFromUnitVectors( v1, v2 )
     let curve = new THREE.EllipseCurve( 0, 0, radius, radius, 0, 2 * Math.PI, false, 0 )
     let points = curve.getPoints( 50 )
-    let geometry = new THREE.Geometry( ).setFromPoints( points )
+    let geometry = new THREE.BufferGeometry( ).setFromPoints( points )
 
     // prepare for potential coloring!
     geometry.vertices.forEach( ( v, i ) => { geometry.colors.push( this.defaultColor ) } )
@@ -211,7 +211,7 @@ let Converter = {
     q.setFromUnitVectors( v1, v2 )
     let curve = new THREE.EllipseCurve( 0, 0, radius, radius, startAngle, endAngle, false, 0 )
     let points = curve.getPoints( 50 )
-    let geometry = new THREE.Geometry( ).setFromPoints( points )
+    let geometry = new THREE.BufferGeometry( ).setFromPoints( points )
 
     // prepare for potential coloring!
     geometry.vertices.forEach( ( v, i ) => { geometry.colors.push( this.defaultColor ) } )
@@ -234,7 +234,7 @@ let Converter = {
     q.setFromUnitVectors( v1, v2 )
     let curve = new THREE.EllipseCurve( 0, 0, radius, radius, startAngle, endAngle, false, 0 )
     let points = curve.getPoints( 50 )
-    let geometry = new THREE.Geometry( ).setFromPoints( points )
+    let geometry = new THREE.BufferGeometry( ).setFromPoints( points )
 
     // prepare for potential coloring!
     geometry.vertices.forEach( ( v, i ) => { geometry.colors.push( this.defaultColor ) } )
@@ -345,7 +345,7 @@ let Converter = {
     if ( args.obj.closed )
       args.obj.value.push( args.obj.value[ 0 ], args.obj.value[ 1 ], args.obj.value[ 2 ] )
 
-    geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( args.obj.value, 3 ) )
+    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( args.obj.value, 3 ) )
     geometry.computeBoundingSphere( )
 
     let polyline = new THREE.Line( geometry, this.materialManager.getLineMaterial( args.obj.color ) )
@@ -398,7 +398,7 @@ let Converter = {
       }
     }
     geometry.setIndex( indices )
-    geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( obj.vertices, 3 ) )
+    geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( obj.vertices, 3 ) )
     geometry.computeFaceNormals( )
     geometry.computeVertexNormals( )
 

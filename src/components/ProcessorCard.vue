@@ -28,7 +28,8 @@
 import debounce from 'lodash.debounce'
 import uniq from 'lodash.uniq'
 import union from 'lodash.union'
-import marked from 'marked'
+import { marked } from 'marked'
+import DOMPurify from 'dompurify';
 
 export default {
   name: 'ProcessorCard',
@@ -46,8 +47,8 @@ export default {
       let date = new Date( this.processor.createdAt )
       return date.toLocaleString( 'en', { year: 'numeric', month: 'long', day: 'numeric' } )
     },
-    compiledDescription( ) {
-      return marked( this.processor.description.substring( 0, 400 ) + ' ...', { sanitize: true } )
+    compiledDescription( ) {  
+      return DOMPurify.sanitize(marked( this.processor.description.substring( 0, 400 ) + ' ...' ))
     },
   },
   data( ) {
