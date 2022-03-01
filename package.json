@@ -9,8 +9,10 @@
     "dev-all": "vue-cli-service serve & netlify-lambda serve ./src/lambda -t 120"
   },
   "dependencies": {
-    "jsonwebtoken": "^8.5.1",    
+    "dot-prop": "^7.2.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash.set": "^4.3.2",
+    "lodash.template": "^4.5.0",
     "md5": "^2.2.1",
     "msal": "^1.1.1",
     "register-service-worker": "^1.5.2",
