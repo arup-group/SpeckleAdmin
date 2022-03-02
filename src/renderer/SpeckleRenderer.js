@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 
-import OrbitControls from 'threejs-orbit-controls'
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 import Rainbow from 'rainbowvis.js'
 import CH from 'color-hash'

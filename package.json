@@ -62,7 +62,6 @@
     "ssri": ">=6.0.2",
     "tar": ">=4.4.18",
     "three": "^0.125.0",
-    "threejs-orbit-controls": "^1.0.3",
     "trim-newlines": ">=3.0.1",
     "uuid": "^3.3.2",
     "vue-async-computed": "^3.7.0",
