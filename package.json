@@ -12,7 +12,7 @@
     "dompurify": "^2.3.6",
     "dot-prop": "^7.2.0",
     "http-proxy": ">=1.18.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "kind-of": ">=6.0.3",
     "lodash": ">=4.17.21",
     "lodash.set": "^4.3.2",
