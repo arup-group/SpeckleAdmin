@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "@tweenjs/tween.js": "^17.3.0",
-    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-babel": "^3.12.1",
     "@vue/cli-plugin-pwa": "^3.6.0",
-    "@vue/cli-service": "^3.10.0",
+    "@vue/cli-service": "^5.0.8",
     "axios": ">=0.21.2",
     "base64url": "^3.0.1",
     "color-hash": "^1.0.3",
